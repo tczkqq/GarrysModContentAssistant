@@ -1,0 +1,86 @@
+{
+    "contents": {
+        "con_css": {
+            "name": "Counter Strike : Source",
+            "url": "https://sample-videos.com/zip/10mb.zip"
+        },
+        "con_dod": {
+            "name": "Day of Defeat : Source",
+            "url": "https://sample-videos.com/zip/10mb.zip"
+        },
+        "con_hl2ext": {
+            "name": "Half Life 2 Extras (LC,DM,ETC.) & HL2 Maps",
+            "url": "https://sample-videos.com/zip/10mb.zip"
+        },
+        "con_hl2e1": {
+            "name": "Half Life 2 : Episode 1",
+            "url": "http://kajar9.myddns.me/downloads/hl2e1content-1unoHYrK5z25D3P/HL2EP1%20Content%20Addon%202017.zip"
+        },
+        "con_hl2e2": {
+            "name": "Half Life 2 : Episode 2",
+            "url": "http://kajar9.myddns.me/downloads/hl2e2content-2I2uG42I4C7G0no/HL2EP2%20Content%20Addon%202017.zip"
+        },
+        "con_portal": {
+            "name": "Portal",
+            "url": "http://kajar9.myddns.me/downloads/portalcontent-7HIKXLMLQBTb2yP/Portal%20Content%20Addon%202017.zip"
+        },
+        "con_portal2": {
+            "name": "Portal 2",
+            "url": "http://kajar9.myddns.me/downloads/portal2-uEhreQ580yaJjk4/portal2_content_addon_apr2016.zip"
+        },
+        "con_hl1": {
+            "name": "Half Life 1 : Source & DeathMatch",
+            "url": "http://kajar9.myddns.me/downloads/hl1-rmAScTdd3HTh65d/hl1_content_addon_apr2016.zip"
+        },
+        "con_l4d": {
+            "name": "Left 4 Dead",
+            "url": "http://kajar9.myddns.me/downloads/l4dcontent-2P5TdKD2OwVjsHK/l4d_content_addon_apr2016.zip"
+        },
+        "con_tf2": {
+            "name": "Team Fortress 2",
+            "url": "http://kajar9.myddns.me/downloads/tf2content-0U4s63K81zE0IYJ/TF2%20Content%20Addon%202017.zip"
+        }
+    },
+    "maps": {
+        "map_css": {
+            "name": "Counter Strike : Source",
+            "url": "http://kajar9.myddns.me/downloads/cssmaps-RGr6ush38TmTy0a/CSSMaps_Jun2018.zip"
+        },
+        "map_dod": {
+            "name": "Day of Defeat : Source",
+            "url": "http://kajar9.myddns.me/downloads/dodmaps-lvPVKz46dhg8Ujr/DOD%20Maps%20Addon%202017.zip"
+        },
+        "map_hl2ext": {
+            "name": "Half Life 2 Extras (LC,DM,ETC.) & HL2 Maps",
+            "url": "http://kajar9.myddns.me/downloads/hl2emaps-mxMzynw65XOZxId/hl2e_maps_addon_apr2016.zip"
+        },
+        "map_hl2e1": {
+            "name": "Half Life 2 : Episode 1",
+            "url": "http://kajar9.myddns.me/downloads/hl2e1maps-659a3WyMtum935a/HL2EP1%20Maps%20Addon%202017.zip"
+        },
+        "map_hl2e2": {
+            "name": "Half Life 2 : Episode 2",
+            "url": "http://kajar9.myddns.me/downloads/hl2e2maps-ZzW5Iq8FSB7Sl68/HL2EP2%20Maps%20Addon%202017.zip"
+        },
+        "map_portal": {
+            "name": "Portal",
+            "url": "http://kajar9.myddns.me/downloads/portalmaps-Ewem6jHuE7V24bV/Portal%20Maps%20Addon%202017.zip"
+        },
+        "map_l2d2": {
+            "name": "Left 4 Dead 2",
+            "url": "http://kajar9.myddns.me/downloads/l4d2content-wJZ3DEy4LyApywZ/l4d2_content_addon_apr2016.zip"
+        },
+        "map_hl1": {
+            "name": "Half Life 1 : Source & DeathMatch",
+            "url": "http://kajar9.myddns.me/downloads/hl1-rmAScTdd3HTh65d/hl1_maps_addon_apr2016.zip"
+        },
+        "map_l2d": {
+            "name": "Left 4 Dead",
+            "url": "http://kajar9.myddns.me/downloads/l4dmaps-k9fHeT3PZMdXGVm/l4d_maps_addon_apr2016_v2.zip"
+        },
+        "map_tf2": {
+            "name": "Team Fortress 2",
+            "url": "http://kajar9.myddns.me/downloads/tf2-maps-ndrAQQP6ZdNV6O9/TF2%20Maps%20Addon%202017.zip"
+        }
+    }
+}
