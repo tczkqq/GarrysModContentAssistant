@@ -13,6 +13,9 @@ import tools
 import json
 import sys
 
+COLOR_BG = "#3C2ECC"
+COLOR_FG = "#ecf0f1"
+
 
 class MainWindow():
     '''
@@ -31,64 +34,64 @@ class MainWindow():
         self.label_logo = tk.Label(image=self.logo, background="#3C2ECC")
         self.label_about = tk.Label(
             text="v0.3 by Tomeczekqq ",
-            background="#3C2ECC",
+            background=COLOR_BG,
             font=("Helvetica", 10),
-            foreground="#ecf0f1"
+            foreground=COLOR_FG
         )
         self.label_eta = tk.Label(
             text='Time',
-            background="#3C2ECC",
+            background=COLOR_BG,
             font=("Helvetica", 12),
-            foreground="#ecf0f1"
+            foreground=COLOR_FG
         )
         self.label_speed = tk.Label(
             text='Speed',
-            background="#3C2ECC",
+            background=COLOR_BG,
             font=("Helvetica", 12),
-            foreground="#ecf0f1",
+            foreground=COLOR_FG,
             justify=tk.RIGHT
         )
         self.label_status = tk.Label(
             text="Status",
-            background="#3C2ECC",
+            background=COLOR_BG,
             font=("Helvetica", 12),
-            foreground="#ecf0f1"
+            foreground=COLOR_FG
         )
         self.label_path = tk.Label(
             text="Content will be automatically downloaded and unzipped in /addons/",
-            background="#3C2ECC",
+            background=COLOR_BG,
             font=("Helvetica", 16),
-            foreground="#ecf0f1"
+            foreground=COLOR_FG
         )
         self.label_content = tk.Label(
             text="Content",
-            background="#3C2ECC",
+            background=COLOR_BG,
             font=("Helvetica", 15),
-            foreground="#ecf0f1"
+            foreground=COLOR_FG
         )
         self.label_maps = tk.Label(
             text="Maps",
-            background="#3C2ECC",
+            background=COLOR_BG,
             font=("Helvetica", 15),
-            foreground="#ecf0f1"
+            foreground=COLOR_FG
         )
         self.label_minfo = tk.Label(
             text="Portal 2 and Left4Dead 2 maps are incompatible with GarrysMod",
-            background="#3C2ECC",
+            background=COLOR_BG,
             font=("Helvetica", 10),
-            foreground="#ecf0f1"
+            foreground=COLOR_FG
         )
         self.label_info = tk.Label(
             text="GMCA is free, open source and non-profit. I dont own this content, I am using reuploaded content from cscheater.era.ee.",
-            background="#3C2ECC",
+            background=COLOR_BG,
             font=("Helvetica", 10),
-            foreground="#ecf0f1"
+            foreground=COLOR_FG
         )
         self.label_link = tk.Label(
             text="Read more",
-            background="#3C2ECC",
+            background=COLOR_BG,
             font=("Helvetica", 10, "bold"),
-            foreground="#ecf0f1",
+            foreground=COLOR_FG,
             cursor="hand2"
         )
         self.label_link.bind(
@@ -97,26 +100,26 @@ class MainWindow():
         )
         self.frame_con = tk.Frame(
             self.master,
-            background="#3C2ECC"
+            background=COLOR_BG
         )
         self.frame_map = tk.Frame(
             self.master,
-            background="#3C2ECC"
+            background=COLOR_BG
         )
         self.button_start = tk.Button(
             text="Download",
             cursor="hand2",
             command=self.init_download,
-            bg='#3C2ECC',
-            foreground="#ecf0f1",
+            bg=COLOR_BG,
+            foreground=COLOR_FG,
             relief=tk.GROOVE,
             font=("Helvetica", 15, "bold")
 
         )
         self.button_action = tk.Button(
             text="Pause",
-            bg='#3C2ECC',
-            foreground="#ecf0f1",
+            bg=COLOR_BG,
+            foreground=COLOR_FG,
             relief=tk.GROOVE,
             command=self.action,
             cursor='hand2'
@@ -189,6 +192,10 @@ class MainWindow():
         self.disable_checkboxes()
         for con in to_download:
             self.start_download(con)
+            if is_close:
+                break
+
+        self.button_action["text"] = "Exit"
 
     def start_download(self, content):
         '''
@@ -196,7 +203,8 @@ class MainWindow():
         '''
         if "mediafire" in content.url:
             content.url = tools.scrap_mediafire(content.url)
-        downloader = SmartDL(content.url, gmod_dir, progress_bar=False)
+        global downloader
+        downloader = SmartDL(content.url, GMOD_DIR, progress_bar=False)
         try:
             downloader.start(blocking=False)
         except:
@@ -206,7 +214,7 @@ class MainWindow():
 
         while not downloader.isFinished():
             if is_close:
-                break
+                return False
             self.label_speed["text"] = downloader.get_speed(human=True)
             self.label_eta["text"] = downloader.get_eta(human=True)
             self.progressbar["value"] = downloader.get_progress()*100
@@ -219,25 +227,17 @@ class MainWindow():
             )
             sleep(0.2)
 
-        if is_close:
-            return True
-
         if downloader.isSuccessful():
             self.label_status["text"] = "Downloading {} completed".format(
                 content.name)
-            to_download.remove(content)
             self.label_status["text"] = "Unziping..."
-            is_unzipped = tools.unzip(content.url, gmod_dir)
+            is_unzipped = tools.unzip(content.url, GMOD_DIR)
             if is_unzipped[0]:
                 self.label_status["text"] = "Completed {}".format(content.name)
             else:
                 self.label_status["text"] = "Unziping {} FAILED! You have to unzip it manualy.".format(
                     is_unzipped[1]
                 )
-            if to_download == []:
-                self.button_action["text"] = "Exit"
-
-            print(to_download)
             return True
         else:
             self.label_status["text"] = "Downloading {} FAILED!".format(
@@ -247,6 +247,7 @@ class MainWindow():
     def get_links(self):
         '''
         parse links.json
+        and create checkboxes
         '''
         with open('links.json', 'r') as f:
             self.data = json.load(f)
@@ -282,24 +283,23 @@ class MainWindow():
             self.element = tk.Checkbutton(
                 master=self.target,
                 text=self.name,
-                background="#3C2ECC",
+                background=COLOR_BG,
                 font=("Helvetica", 12),
-                foreground="#ecf0f1",
-                selectcolor='#3C2ECC',
-                activebackground='#3C2ECC',
+                foreground=COLOR_FG,
+                selectcolor=COLOR_BG,
+                activebackground=COLOR_BG,
                 variable=self.enabled
             )
             self.element.pack(anchor=tk.W)
 
 
 def on_close():
+    is_close = True
     try:
-        is_close = True
         downloader.stop()
-        root.destroy()
-
     except:
-        root.destroy()
+        pass
+    root.destroy()
 
 
 def center_window(w, h):
@@ -313,13 +313,12 @@ def center_window(w, h):
 
 
 if __name__ == "__main__":
-    global downloader
     is_close = False
     to_download = []
-    gmod_dir = tools.find_steam()
+    GMOD_DIR = tools.find_steam()
     root = tk.Tk()
     root.title("Garry's Mod Content Assistant v0.3")
-    root.configure(background="#3C2ECC")
+    root.configure(background=COLOR_BG)
     root.resizable(0, 0)
     root.iconbitmap('resources/icon.ico')
     root.protocol("WM_DELETE_WINDOW", on_close)

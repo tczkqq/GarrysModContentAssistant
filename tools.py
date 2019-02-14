@@ -8,6 +8,9 @@ import winreg
 
 
 def open_website(*args):
+    '''
+    TODO: Add website
+    '''
     system("start https://github.com/Tomeczekqq/GarrysModContentAssistant")
 
 
@@ -63,7 +66,6 @@ def scrap_mediafire(url):
     div_tag = soup.find_all(class_="download_link")[0]
     script_tag = div_tag("script")[0]
     link = findall(regex, script_tag.contents[0])[0][0]
-    print(link)
     return link
 
 
@@ -78,7 +80,7 @@ def find_steam():
         location = winreg.QueryValueEx(key, "SteamPath")[0]
         return location + '/steamapps/common/GarrysMod/garrysmod/addons/'
     except:
-        return path.dirname(path.abspath(__file__)) + 'downloads/steamapps/common/GarrysMod/garrysmod/addons/'
+        return path.dirname(path.abspath(__file__)) + '/downloads/steamapps/common/GarrysMod/garrysmod/addons/'
 
 
 def unzip(link, dir):
@@ -88,9 +90,6 @@ def unzip(link, dir):
     '''
     a = path.split(link)
     filename = unquote(a[1])
-    print(filename)
     with ZipFile(dir + filename, "r") as zip_ref:
         zip_ref.extractall(dir)
-        print("unzipped")
-    print("hej")
     return [True, filename]
