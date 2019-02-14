@@ -4,7 +4,7 @@ Easy Garry's Mod Content installation tool. You can install gmod content in just
 ## Download
 - coming soon
 
-![screenshot](resources/Screenshot.png)
+![screenshot](resources/Screenshot.jpg)
 
 ## Requirements
 - Python 3
